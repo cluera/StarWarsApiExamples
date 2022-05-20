@@ -1,0 +1,108 @@
+{
+	"info": {
+		"_postman_id": "45250cc6-1f6a-4e3c-a96f-8ae712b02783",
+		"name": "StarWarsApiExample",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Characters",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  sWAPI_Characters (where: { films: { exists: true }}) {\r\n    count,\r\n    edges {\r\n      node {\r\n        birthYear\r\n        createdAt\r\n        eyeColor\r\n        films {\r\n          edges {\r\n            node {\r\n              id\r\n            }\r\n          }\r\n        }\r\n        gender\r\n        hairColor\r\n        height\r\n        homeworld {\r\n          id\r\n        }\r\n        id\r\n        mass\r\n        name\r\n        skinColor\r\n        species {\r\n          edges {\r\n            node {\r\n              id\r\n            }\r\n          }\r\n        }\r\n        starships {\r\n          edges {\r\n            node {\r\n              id\r\n            }\r\n          }\r\n        }\r\n        updatedAt\r\n        vehicles {\r\n          edges {\r\n            node {\r\n              id\r\n            }\r\n          }\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					}
+				},
+				"url": {
+					"raw": "https://parseapi.back4app.com/graphql",
+					"protocol": "https",
+					"host": [
+						"parseapi",
+						"back4app",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Print Name of Heaviest Character with no birthYear",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const body = pm.response.json();\r",
+							"const homeOfHeaviestChar = body.data.sWAPI_Characters.edges[0].node.homeworld.name;\r",
+							"console.log(homeOfHeaviestChar);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query {\r\n  sWAPI_Characters (first: 1, where: { birthYear: { exists: false }}, order: [mass_DESC]) {\r\n    edges {\r\n      node {\r\n        homeworld {\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
+						"variables": ""
+					},
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://parseapi.back4app.com/graphql",
+					"protocol": "https",
+					"host": [
+						"parseapi",
+						"back4app",
+						"com"
+					],
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					"const applicationId = pm.environment.get(\"ApplicationId\");",
+					"pm.request.headers.add({ key: 'X-Parse-Application-Id', value: applicationId });",
+					"",
+					"const apiKey = pm.environment.get(\"APIKey\");",
+					"pm.request.headers.add({ key: 'X-Parse-REST-API-Key', value: apiKey });"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
