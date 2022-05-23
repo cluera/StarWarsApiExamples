@@ -19,10 +19,9 @@ export const getHomeworldsWithCharacters = async (): Promise<IHomeworld[]> => {
       }
       }
   }`;
-  const response = await client.request(query);
-  const data: CharactersResponse = response;
+  const response: CharactersResponse = await client.request(query);
   const homeworlds: IHomeworld[] = [];
-  data?.sWAPI_Characters?.edges?.forEach((edge) => {
+  response?.sWAPI_Characters?.edges?.forEach((edge) => {
       const homeworldIdx = homeworlds.findIndex((h) => h.name === edge.node.homeworld.name);
       const character: ICharacter = {
       id: edge.node.id,
