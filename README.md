@@ -28,13 +28,15 @@ Contains an example of consuming the Star Wars GraphQL API using Nodejs, Typescr
 
 To run, do the following steps:
 1. Open the folder with your editor of choice (i.e. Visual Studio Code)
-2. Run a terminal in the folder, and execute `npm run ci` to install dependencies.
+2. Run a terminal in the folder, and execute `npm ci` to install dependencies.
 3. Create a file called `.env` at the root of the `node-with-ts` folder.
 4. Edit the file, and populate with the following:
 `API_HOST=<Your_API_HOST>`
 `APP_ID=<Your_APP_ID>`
 `API_KEY=<Your_API_KEY>`
 5. Finally, execute the command `npm run start`. The console will output the JSON as a string.
+
+To execute tests, run command `npm run test`.
 
 ## Azure Serverless Function - TypeScript - Example
 Under the [`azure-function`](azure-function) folder, exists a local project for Azure Serverless functions. This project also uses the same [GraphQL client library](https://github.com/prisma-labs/graphql-request).
@@ -48,3 +50,7 @@ The function `getHomeworldsWithCharacters` can be ran locally. Before running lo
 
 To run the serverless function without running local, it can be ran with the following link: 
 https://cluera-swapi.azurewebsites.net/api/getHomeworldsWithCharacters
+
+To run locally, ensure dependnecies are installed by executing `npm ci`.
+
+To execute tests, run `npm run test`.
