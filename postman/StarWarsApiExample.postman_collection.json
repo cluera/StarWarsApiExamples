@@ -18,15 +18,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://parseapi.back4app.com/graphql",
-					"protocol": "https",
+					"raw": "{{APIHost}}",
 					"host": [
-						"parseapi",
-						"back4app",
-						"com"
-					],
-					"path": [
-						"graphql"
+						"{{APIHost}}"
 					]
 				}
 			},
@@ -66,15 +60,9 @@
 					}
 				},
 				"url": {
-					"raw": "https://parseapi.back4app.com/graphql",
-					"protocol": "https",
+					"raw": "{{APIHost}}",
 					"host": [
-						"parseapi",
-						"back4app",
-						"com"
-					],
-					"path": [
-						"graphql"
+						"{{APIHost}}"
 					]
 				}
 			},
