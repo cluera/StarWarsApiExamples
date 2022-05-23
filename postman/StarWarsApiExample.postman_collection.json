@@ -2,7 +2,8 @@
 	"info": {
 		"_postman_id": "45250cc6-1f6a-4e3c-a96f-8ae712b02783",
 		"name": "StarWarsApiExample",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8893123"
 	},
 	"item": [
 		{
@@ -27,7 +28,7 @@
 			"response": []
 		},
 		{
-			"name": "Print Name of Heaviest Character with no birthYear",
+			"name": "Print Homeworld Name of Heaviest Character with no birthYear",
 			"event": [
 				{
 					"listen": "test",
@@ -52,11 +53,6 @@
 					"graphql": {
 						"query": "query {\r\n  sWAPI_Characters (first: 1, where: { birthYear: { exists: false }}, order: [mass_DESC]) {\r\n    edges {\r\n      node {\r\n        homeworld {\r\n          name\r\n        }\r\n      }\r\n    }\r\n  }\r\n}",
 						"variables": ""
-					},
-					"options": {
-						"raw": {
-							"language": "json"
-						}
 					}
 				},
 				"url": {
